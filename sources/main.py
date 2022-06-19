@@ -6,12 +6,12 @@ from flask_jsonrpc import JSONRPC as JsonRpc
 
 
 application = Flask('app')
-json_rpc = JsonRpc(application, '/api')
+json_rpc = JsonRpc(application, '/api', enable_web_browsable_api=True)
 
 
 @application.route('/')
 def get_main_page() -> str:
-    return f'<p>Hello World!<br>This is a main page.</p>'
+    return f'<p>Hello World!<br>This is a main page. Check <a href="{json_rpc.browse_url}">API documentation</a>.</p>'
 
 
 @json_rpc.method('get_text')
